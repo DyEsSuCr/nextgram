@@ -14,7 +14,6 @@ export const User = sequelize.define('users', {
   },
   name: {
     type: DataTypes.STRING(120),
-    allowNull: true
   },
   username: {
     type: DataTypes.STRING(60),
@@ -32,15 +31,12 @@ export const User = sequelize.define('users', {
   },
   avatar: {
     type: DataTypes.STRING,
-    allowNull: true
   },
   biography: {
     type: DataTypes.STRING(180),
-    allowNull: true
   },
   web: {
     type: DataTypes.STRING(120),
-    allowNull: true
   }
 })
 
