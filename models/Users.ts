@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import { DataTypes } from 'sequelize'
 import { sequelize } from '@/database/config'
 
@@ -42,3 +43,13 @@ export const User = sequelize.define('users', {
     allowNull: true
   }
 })
+
+User.prototype.hasPassword = (password: string) => {
+  const salt = bcrypt.genSaltSync(8)
+  const hash = bcrypt.hashSync(password, salt)
+  return hash
+}
+
+User.prototype.comparePassword = (password: string, hasPassword: string) => {
+  return bcrypt.compareSync(password, hasPassword)
+}
