@@ -7,7 +7,7 @@ export const POST = async (req: NextRequest) => {
     await connectSequelize()
 
     const user = await registerUser(req)
-    return NextResponse.json({ message: 'Usuario registrado', user })
+    return NextResponse.json(user)
   } catch (err) {
     return NextResponse.json(err)
   }
