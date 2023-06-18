@@ -1,13 +1,17 @@
-import express from 'express'
+import app from './app'
+import { conectionSequelize } from './database/config'
 
-const app = express()
 
-const port = 5173
+const main = async () => {
+  try {
+    await conectionSequelize.sync({ force: true })
 
-app.get('/', (_, res) => {
-  res.send('Hello World!')
-})
+    app.listen(app.get('port'), () => {
+      console.log(`🆗✅🆗 Server on port ${app.get('port')} 🆗✅🆗`)
+    })
+  } catch (err) {
+    console.error(`🛑⛔ Not connection database ❗${err}❗ ⛔🛑`)
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+main()
