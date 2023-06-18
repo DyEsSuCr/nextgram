@@ -4,6 +4,7 @@ import cors from 'cors'
 
 // NOTE: Local
 import env from './config'
+import { router } from './routes'
 
 // NOTE: App Init
 const app = express()
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(cors())
 
 // NOTE: Routes
+app.use('/api/v1', router)
 
 app.use((_, res) => {
   res.status(404).json({
