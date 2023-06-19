@@ -1,9 +1,9 @@
 import { Response, Request, NextFunction } from 'express'
 import { check } from 'express-validator'
-import { User } from '../models'
-import { validateHelper } from '../helpers/validateHelper'
+import { User } from '../../models'
+import { validateHelper } from '../../helpers/validateHelper'
 
-export const validateDataUser = [
+export const validateDataRegister = [
   check('username')
     .exists()
     .not()

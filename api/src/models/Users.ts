@@ -1,4 +1,5 @@
-import { Model, Table, Column, DataType } from 'sequelize-typescript'
+import { Model, Table, Column, DataType, BeforeCreate } from 'sequelize-typescript'
+import bcrypt from 'bcryptjs'
 
 @Table
 export class User extends Model {
@@ -18,7 +19,7 @@ export class User extends Model {
   @Column({
     type: DataType.STRING(120)
   })
-  name!: string  
+  name!: string
 
   @Column({
     type: DataType.STRING(60),
@@ -49,9 +50,16 @@ export class User extends Model {
     type: DataType.STRING(180)
   })
   biography!: string
-  
+
   @Column({
     type: DataType.STRING(120)
   })
   web!: string
+
+  @BeforeCreate
+  static makeUpperCase(instance: User) {
+    const salt = bcrypt.genSaltSync(8)
+    const hash = bcrypt.hashSync(instance.password, salt)
+    instance.password = hash
+  }
 } 

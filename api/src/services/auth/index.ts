@@ -1,12 +1,6 @@
 import { Request } from 'express'
 import { User } from '../../models'
 
-export const addUser = async ({ body }: Request) => {
-  const { username, email, password } = body
+export const addUser = async ({ body }: Request) => await User.create({ ...body })
 
-  return await User.create({
-    username: username,
-    email: email,
-    password: password
-  })
-}
+export const login = async ({body}: Request) => await User.findOne({ where: { email: body.email } })
