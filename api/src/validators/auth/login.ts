@@ -27,7 +27,7 @@ export const validatorDataLogin = [
     .notEmpty()
     .withMessage('La contraseña no puede estar vacia')
     .isLength({ min: 8, max: 30 })
-    .custom(async (value, {req}) => {
+    .custom(async (value, { req }) => {
       const user = await User.findOne({ where: { email: req.body.email } })
       const matchPassowrd = compareSync(value, user?.password ?? '')
       if (!matchPassowrd) throw new Error('Correo o contraseña incorrecto')
