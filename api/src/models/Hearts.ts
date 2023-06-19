@@ -1,10 +1,11 @@
-import { DataTypes } from 'sequelize'
-import { conectionSequelize } from '../database/config'
+import { Model, Table, Column,DataType } from 'sequelize-typescript'
 
-export const Heart = conectionSequelize.define('hearts', {
-  id: {
-    type: DataTypes.UUID,
+@Table
+export class Heart extends Model {
+  @Column({
+    type: DataType.UUID,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  }
-})
+    defaultValue: DataType.UUIDV4
+  })
+  id!: string
+}

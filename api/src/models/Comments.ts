@@ -1,14 +1,16 @@
-import { DataTypes } from 'sequelize'
-import { conectionSequelize } from '../database/config'
-
-export const Comment = conectionSequelize.define('comments', {
-  id: {
-    type: DataTypes.UUID,
+import { Model, Table, Column, DataType   } from 'sequelize-typescript'
+@Table
+export class Comments extends Model {
+  @Column({
+    type: DataType.UUID,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  },
-  comment: {
-    type: DataTypes.STRING(180),
+    defaultValue: DataType.UUIDV4
+  })
+  id!: string
+
+  @Column({
+    type: DataType.STRING(180),
     allowNull: false
-  }
-})
+  })
+  comment!: string
+}

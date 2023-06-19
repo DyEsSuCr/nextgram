@@ -1,40 +1,57 @@
-import { DataTypes } from 'sequelize'
-import { conectionSequelize } from '../database/config'
+import { Model, Table, Column, DataType } from 'sequelize-typescript'
 
-export const User = conectionSequelize.define('users', {
-  id: {
-    type: DataTypes.UUID,
+@Table
+export class User extends Model {
+  @Column({
+    type: DataType.UUID,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  },
-  password: {
-    type: DataTypes.STRING(60),
+    defaultValue: DataType.UUIDV4
+  })
+  id!: string
+
+  @Column({
+    type: DataType.STRING(60),
     allowNull: false
-  },
-  name: {
-    type: DataTypes.STRING(120),
-  },
-  username: {
-    type: DataTypes.STRING(60),
+  })
+  password!: string
+
+  @Column({
+    type: DataType.STRING(120)
+  })
+  name!: string  
+
+  @Column({
+    type: DataType.STRING(60),
     allowNull: false,
     unique: true
-  },
-  is_active: {
-    type: DataTypes.BOOLEAN,
+  })
+  username!: string
+
+  @Column({
+    type: DataType.BOOLEAN,
     defaultValue: true
-  },
-  email: {
-    type: DataTypes.STRING(40),
+  })
+  is_active!: boolean
+
+  @Column({
+    type: DataType.STRING(40),
     allowNull: false,
     unique: true
-  },
-  avatar: {
-    type: DataTypes.STRING,
-  },
-  biography: {
-    type: DataTypes.STRING(180),
-  },
-  web: {
-    type: DataTypes.STRING(120),
-  }
-})
+  })
+  email!: string
+
+  @Column({
+    type: DataType.STRING,
+  })
+  avatar!: string
+
+  @Column({
+    type: DataType.STRING(180)
+  })
+  biography!: string
+  
+  @Column({
+    type: DataType.STRING(120)
+  })
+  web!: string
+} 

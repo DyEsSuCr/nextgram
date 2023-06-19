@@ -1,8 +1,6 @@
 import app from './app'
 import { conectionSequelize } from './database/config'
 
-import './models'
-
 const main = async () => {
   try {
     await conectionSequelize.sync({ force: true })
